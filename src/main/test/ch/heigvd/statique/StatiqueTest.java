@@ -11,11 +11,11 @@ import picocli.CommandLine;
 
 class StatiqueTest {
 
-  private final ByteArrayOutputStream ouptu = new ByteArrayOutputStream();
+  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
   @BeforeEach
   void setUp() {
-    System.setOut(new PrintStream(ouptu));
+    System.setOut(new PrintStream(output));
   }
 
   @AfterEach
@@ -26,12 +26,15 @@ class StatiqueTest {
   void result() throws Exception {
     int exitCode = new CommandLine(new Statique()).execute();
     assertEquals(exitCode, 0);
+    assertThrows(Exception.class, () -> {
+      throw new Exception();
+    });
   }
 
   @Test
   void output() throws Exception {
     new CommandLine(new Statique()).execute("init");
-    assertTrue(ouptu.toString().contains("init"));
+    assertTrue(output.toString().contains("init"));
   }
 
 }
