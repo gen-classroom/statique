@@ -8,8 +8,7 @@ Build and unzip the project
 
 ```
 mvn clean install \
-    && rm -fr statique \
-    && unzip target/statique.zip
+    && unzip -o target/statique.zip
 ```
 
 **Windows:** Use git bash or any other unix based bash. Or do a mvn clean install -> remove manualy the old statique folder at the root of your project and unzip the new *target/statique.zip*.
