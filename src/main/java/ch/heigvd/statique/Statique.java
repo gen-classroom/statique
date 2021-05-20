@@ -14,10 +14,11 @@ import picocli.CommandLine.Command;
     subcommands = {Init.class, Clean.class, Build.class, Serve.class})
 public class Statique implements Callable<Integer> {
 
-
   public static void main(String... args) {
     int exitCode = new CommandLine(new Statique()).execute(args);
-    System.exit(exitCode);
+    if (exitCode != 0) {
+      System.exit(exitCode);
+    }
   }
 
   @Override
